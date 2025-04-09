@@ -35,7 +35,7 @@ const DUMMY_TICKERS = [
   { proName: "NASDAQ:MSFT", title: "Microsoft" },
 ];
 
-const DUMMY_DATES = ["2023-12-01", "2023-12-15", "2023-12-20"];
+// const DUMMY_DATES = ["2023-12-01", "2023-12-15", "2023-12-20"];
 
 const StockList = () => {
   const [symbols, setSymbols] = useState([]);
