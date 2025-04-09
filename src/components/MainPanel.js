@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import TradingViewChart from "./TradingViewChart";
-import FundamentalData from "./Fudamentaldata";
+import FundamentalData from "./FundamentalData";
 import { SymbolProvider } from "../context/SymbolContext";
+import "../styles/MainPanel.css";
 
 const MainPanel = () => {
   const [stockData, setStockData] = useState([]);
@@ -19,11 +20,15 @@ const MainPanel = () => {
   }, []);
   return (
     <SymbolProvider>
-      <div className="panel main-panel">
-        <h2 className="ticker-list">Stock Price Chart</h2>
-        <TradingViewChart data={stockData} />
-        <br />
-        <FundamentalData />
+      <div className="main-panel">
+        <h2 className="main-title">📈 Stock Price Chart</h2>
+        <div className="chart-container">
+          {/* <LightweightChartWithDraw data={stockData} /> */}
+          <TradingViewChart data={stockData} />
+        </div>
+        <div className="fundamental-section">
+          <FundamentalData />
+        </div>
       </div>
     </SymbolProvider>
   );

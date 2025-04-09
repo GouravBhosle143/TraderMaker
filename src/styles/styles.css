@@ -17,11 +17,6 @@
     align-items: center;
 }
 
-.chart-container {
-    width: 100%;
-    max-width: 800px;
-}
-
 .ticker-list {
     text-align: center;
     background-color: white;
@@ -47,10 +42,10 @@
     font-weight: bold;
 }
 
-.tradingview-widget-container {
+/* .tradingview-widget-container {
     padding: 0px 20px;
     background-color: white;
-}
+} */
 
 .selector-btn{
     width: 100%;
@@ -58,4 +53,18 @@
     display: flex;
     justify-content: center;
     padding-bottom: 12px;
+}
+
+.selector-btn>div:first-child{
+    border-radius: 6px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    background: #1e1e1e;
+    color: #b8b8b8;
+    border: 1px solid #333;
+}
+
+.css-lohd6h-MuiSvgIcon-root-MuiSelect-icon{
+    color: #b8b8b8 !important;
 }
