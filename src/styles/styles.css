@@ -47,7 +47,7 @@
     background-color: white;
 } */
 
-.selector-btn{
+.selector-btn {
     width: 100%;
     align-items: center;
     display: flex;
@@ -55,7 +55,7 @@
     padding-bottom: 12px;
 }
 
-.selector-btn>div:first-child{
+.selector-btn>div:first-child {
     border-radius: 6px;
     border: none;
     outline: none;
@@ -65,6 +65,22 @@
     border: 1px solid #333;
 }
 
-.css-lohd6h-MuiSvgIcon-root-MuiSelect-icon{
+.css-lohd6h-MuiSvgIcon-root-MuiSelect-icon {
     color: #b8b8b8 !important;
+}
+
+.MuiOutlinedInput-notchedOutline {
+    border-color: #ccc !important;
+}
+
+.select-symbol>div>div:first-child {
+    color: #ccc;
+}
+
+.ant-collapse-header-text{
+    color: white !important;
+}
+
+.ant-collapse-expand-icon{
+    display: none !important;
 }

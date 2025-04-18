@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
-import '../styles/StockList.css';
+import "../styles/StockList.css";
 
-// Simulated ticker data fetch
 export const getTickerData = async (tickerName) => {
   await new Promise((resolve) => setTimeout(resolve, 500));
   return {
@@ -16,7 +15,6 @@ export const getTickerData = async (tickerName) => {
   };
 };
 
-// Simulated highlighted dates fetch
 export const getDates = async (query, param1, param2) => {
   await new Promise((resolve) => setTimeout(resolve, 500));
   return {
@@ -35,13 +33,12 @@ const DUMMY_TICKERS = [
   { proName: "NASDAQ:MSFT", title: "Microsoft" },
 ];
 
-// const DUMMY_DATES = ["2023-12-01", "2023-12-15", "2023-12-20"];
-
 const StockList = () => {
   const [symbols, setSymbols] = useState([]);
   const [search, setSearch] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [selectedTickerData, setSelectedTickerData] = useState(null);
+  const [showPopup, setShowPopup] = useState(false); 
   const containerRef = useRef(null);
 
   useEffect(() => {
@@ -52,7 +49,6 @@ const StockList = () => {
   useEffect(() => {
     if (!symbols.length) return;
 
-    // Clear existing script
     const existingScript = document.querySelector(
       'script[src="https://s3.tradingview.com/external-embedding/embed-widget-tickers.js"]'
     );
@@ -60,14 +56,12 @@ const StockList = () => {
       existingScript.remove();
     }
 
-    // Clear old children
     if (containerRef.current) {
       containerRef.current.innerHTML = `
         <div class="tradingview-widget-container__widget"></div>
       `;
     }
 
-    // Inject new script
     const script = document.createElement("script");
     script.src = "https://s3.tradingview.com/external-embedding/embed-widget-tickers.js";
     script.async = true;
@@ -85,6 +79,14 @@ const StockList = () => {
     }
   }, [symbols]);
 
+  // useEffect(() => {
+  //   if (showPopup) {
+  //     // Automatically hide the popup after 5 seconds
+  //     setTimeout(() => {
+  //       setShowPopup(false);
+  //     }, 5000);
+  //   }
+  // }, [showPopup]);
 
   const handleSearch = (text) => {
     setSearch(text);
@@ -97,23 +99,26 @@ const StockList = () => {
   };
 
   const handleSelect = async (item) => {
-    const others = DUMMY_TICKERS.filter((t) => t.proName !== item.proName).slice(0, 2);
-    setSymbols([item, ...others]);
+    const others = DUMMY_TICKERS.filter((t) => t.proName !== item.proName);
+    setSymbols([item]);
     setSearch(item.title);
     setSuggestions([]);
-    const data = await getTickerData(item.title); // or use item.proName
+    const data = await getTickerData(item.title);
     setSelectedTickerData(data);
+    setShowPopup(true);
   };
-
   const handleCommandClick = () => {
-    setSymbols(DUMMY_TICKERS); // Show all tickers
+    setSymbols(DUMMY_TICKERS); 
+    setShowPopup(true); 
   };
 
-
+  const handleClosePopup = () => {
+    setShowPopup(false);
+    setSymbols([]); 
+    window.location.reload(); 
+  };
   return (
     <div className="stock-container">
-      <h2 className="stock-heading">📈 Stock Ticker Dashboard</h2>
-
       <div className="stock-search-container-1">
         <div className="stock-search-wrapper">
           <input
@@ -139,26 +144,31 @@ const StockList = () => {
         </button>
       </div>
 
-      <div className="tradingview-widget-container" ref={containerRef}>
-        <div className="tradingview-widget-container__widget" />
-      </div>
+      {showPopup && (
+        <div className="popup-widget animate-popup">
+          <div className="popup-header">
+            <button onClick={handleClosePopup} className="close-button">❌</button>
+          </div>
+          <div className="tradingview-widget-container" ref={containerRef}>
+            <div className="tradingview-widget-container__widget" />
+          </div>
 
-      {selectedTickerData && (
-        <div className="stock-data">
-          <h3>{selectedTickerData.name} - Price Data</h3>
-          <ul>
-            {selectedTickerData.prices.map((price, idx) => (
-              <li key={idx}>
-                {price.date}: <span className="price-value">${price.value}</span>
-              </li>
-            ))}
-          </ul>
+          {selectedTickerData && (
+            <div className="stock-data">
+              <h3>{selectedTickerData.name} - Price Data</h3>
+              <ul>
+                {selectedTickerData.prices.map((price, idx) => (
+                  <li key={idx}>
+                    {price.date}: <span className="price-value">${price.value}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
       )}
     </div>
   );
-
-  // );
 };
 
 export default StockList;

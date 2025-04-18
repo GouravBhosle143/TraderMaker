@@ -21,9 +21,7 @@ const MainPanel = () => {
   return (
     <SymbolProvider>
       <div className="main-panel">
-        <h2 className="main-title">📈 Stock Price Chart</h2>
         <div className="chart-container">
-          {/* <LightweightChartWithDraw data={stockData} /> */}
           <TradingViewChart data={stockData} />
         </div>
         <div className="fundamental-section">
