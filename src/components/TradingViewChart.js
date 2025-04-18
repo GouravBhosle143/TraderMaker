@@ -18,7 +18,7 @@ import html2canvas from "html2canvas";
 import ReactApexChart from 'react-apexcharts';
 
 const TradingViewChart = () => {
-  const container = useRef(null);
+  // const container = useRef(null);
   const { symbol, setSymbol } = useContext(SymbolContext);
   const [note, setNote] = useState("");
   const [showNotes, setShowNotes] = useState(false);

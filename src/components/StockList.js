@@ -99,7 +99,7 @@ const StockList = () => {
   };
 
   const handleSelect = async (item) => {
-    const others = DUMMY_TICKERS.filter((t) => t.proName !== item.proName);
+    // const others = DUMMY_TICKERS.filter((t) => t.proName !== item.proName);
     setSymbols([item]);
     setSearch(item.title);
     setSuggestions([]);
