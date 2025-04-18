@@ -229,7 +229,10 @@ const TradingViewChart = () => {
       xaxis: {
         type: 'datetime',
         labels: {
-          rotate: -45, // ya 0, 45, -90 as per preference
+          rotate: -55,
+          hideOverlappingLabels: true, // avoid clutter
+          showDuplicates: false,
+          trim: true,
           style: {
             colors: '#fff',
             fontSize: '10px' // font size kam karo
@@ -238,7 +241,6 @@ const TradingViewChart = () => {
             year: 'yyyy',
             month: "MMM 'yy",
             day: 'dd MMM',
-            hour: 'HH:mm',
           }
         }
       },
