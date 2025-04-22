@@ -21,7 +21,7 @@ const TradingViewChart = () => {
   const { symbol, setSymbol } = useContext(SymbolContext);
   const [note, setNote] = useState("");
   const [showNotes, setShowNotes] = useState(false);
-  const [showVolume, setShowVolume] = useState(true);
+  const [showVolume] = useState(true);
   const [researchDialogOpen, setResearchDialogOpen] = useState(false);
   const [chartData, setChartData] = useState({ series: [], options: {} });
   const [settingsOpen, setSettingsOpen] = useState(false);
@@ -304,34 +304,8 @@ const TradingViewChart = () => {
       { x: new Date(2024, 0, 30), y: 50130000 },
       { x: new Date(2024, 0, 31), y: 53920000 }
     ];
-    const startPoint = {
-      x: candleData[0].x.getTime(),
-      y: candleData[0].y[3]  // close price of the first candle
-    };
-  
-    const endPoint = {
-      x: candleData[candleData.length - 1].x.getTime(),
-      y: candleData[candleData.length - 1].y[3]  // close price of the last candle
-    };
-  
-    const trendline = {
-      annotations: {
-        yaxis: [
-          {
-            y: 6620,
-            borderColor: '#00E396',
-            label: {
-              borderColor: '#00E396',
-              style: {
-                color: '#fff',
-                background: '#00E396'
-              },
-              text: 'Support'
-            }
-          }
-        ]
-      },
-    };
+    
+    
     const series = [
       { name: 'candle', data: candleData },
       ...(showVolume ? [{
@@ -342,27 +316,7 @@ const TradingViewChart = () => {
       }] : [])
     ];
 
-    const trendMarkers = candleData.map((item) => {
-      const [open, , , close] = item.y;
-      const isUp = close > open;
-  
-      return {
-        x: item.x,
-        marker: {
-          size: 6,
-          fillColor: isUp ? colors.upward : colors.downward,
-          shape: isUp ? 'triangle' : 'invertedTriangle',
-        },
-        label: {
-          borderColor: isUp ? colors.upward : colors.downward,
-          style: {
-            color: '#fff',
-            background: isUp ? colors.upward : colors.downward
-          },
-          text: isUp ? 'Up' : 'Down'
-        }
-      };
-    });
+    
 
     const options = {
       chart: {

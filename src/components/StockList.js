@@ -107,10 +107,10 @@ const StockList = () => {
     setSelectedTickerData(data);
     setShowPopup(true);
   };
-  const handleCommandClick = () => {
-    setSymbols(DUMMY_TICKERS); 
-    setShowPopup(true); 
-  };
+  // const handleCommandClick = () => {
+  //   setSymbols(DUMMY_TICKERS); 
+  //   setShowPopup(true); 
+  // };
 
   const handleClosePopup = () => {
     setShowPopup(false);
