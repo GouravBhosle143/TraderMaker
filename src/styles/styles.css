@@ -84,3 +84,7 @@
 .ant-collapse-expand-icon{
     display: none !important;
 }
+
+.MuiToolbar-root{
+    min-height: 45px !important;
+}

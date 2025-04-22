@@ -139,9 +139,9 @@ const StockList = () => {
           )}
         </div>
 
-        <button onClick={handleCommandClick} className="stock-command-button">
+        {/* <button onClick={handleCommandClick} className="stock-command-button">
           Show All Tickers
-        </button>
+        </button> */}
       </div>
 
       {showPopup && (

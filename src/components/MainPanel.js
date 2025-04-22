@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import TradingViewChart from "./TradingViewChart";
-import FundamentalData from "./FundamentalData";
+// import FundamentalData from "./FundamentalData";
 import { SymbolProvider } from "../context/SymbolContext";
 import "../styles/MainPanel.css";
 
@@ -24,9 +24,9 @@ const MainPanel = () => {
         <div className="chart-container">
           <TradingViewChart data={stockData} />
         </div>
-        <div className="fundamental-section">
+        {/* <div className="fundamental-section">
           <FundamentalData />
-        </div>
+        </div> */}
       </div>
     </SymbolProvider>
   );
